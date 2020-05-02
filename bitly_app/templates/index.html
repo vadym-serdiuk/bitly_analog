@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>Short link service</title>
+</head>
+<body>
+    <p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Create short link</button>
+        </form>
+    </p>
+    {% if link %}
+    <p>
+        Short link: <strong>{{ base_url }}/{{ link.short_key }}</strong>
+    </p>
+    {% endif %}
+
+    {% if link and not f_new %}
+    <p>
+        Link was used: <strong>{{ link.views_number }} {{ link.views_number|pluralize:"time,times" }}</strong>
+    </p>
+    {% endif %}
+</body>
+</html>
